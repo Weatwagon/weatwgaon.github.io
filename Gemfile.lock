@@ -258,7 +258,6 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages (~> 215)
-  jekyll-seo-tag
 
 BUNDLED WITH
    2.2.3
