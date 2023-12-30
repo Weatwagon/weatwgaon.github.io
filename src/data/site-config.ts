@@ -89,6 +89,11 @@ const siteConfig: SiteConfig = {
             icon: 'github'
         },
         {
+            text: 'Follow on LinkedIn',
+            href: 'https://www.linkedin.com/in/zachary-l-jones/',
+            icon: 'linkedin'
+        },
+        {
             text: 'Follow on Facebook',
             href: 'https://facebook.com/Weatwagon',
             icon: 'facebook'
