@@ -1,0 +1,3 @@
+[submodule "windows-sandbox"]
+	path = windows-sandbox
+	url = https://github.com/Weatwagon/windows-sandbox.git
