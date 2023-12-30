@@ -46,8 +46,8 @@ const siteConfig: SiteConfig = {
     title: 'Za.ck-Jones.net',
     description: 'Portfolio and blog site for Zack Jones',
     image: {
-        src: '/ovidius-preview.jpg',
-        alt: 'Ovidius - Astro.js and Tailwind CSS theme'
+        src: '/me-slug.jpg',
+        alt: 'Portfolio and blog site for Zack Jones'
     },
     primaryNavLinks: [
         {
