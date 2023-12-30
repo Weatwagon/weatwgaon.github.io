@@ -1,75 +1,60 @@
 ---
-import { getCollection } from "astro:content";
-import SocialIcon from "../components/SocialIcon.astro";
+import { getCollection } from 'astro:content';
+import NoHeaderLayout from '../layouts/NoHeaderLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import FeaturedPostPreview from '../components/FeaturedPostPreview.astro';
+import PostPreview from '../components/PostPreview.astro';
+import siteConfig from '../data/site-config';
+import { sortPostsByDateDesc } from '../utils/post-utils';
+import Subscribe from '../components/Subscribe.astro';
 
-const bio = await getCollection("bio");
-const links = await getCollection("links");
-const socials = await getCollection("socials");
-
-const profile = bio[0];
-
-const { Content } = await profile.render();
+const posts = (await getCollection('blog')).sort(sortPostsByDateDesc);
+const featuredPosts = posts.filter(({ data }) => data.isFeatured);
+const latestPosts = posts.filter(({ data }) => !data.isFeatured).slice(0, 3);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>LTree | {profile.data.name}</title>
-  </head>
-  <body>
-    <main class="flex flex-col items-center justify-center p-4 pt-10">
-      <img src={profile.data.avatar} alt="avatar" class="w-32 h-32 rounded-full" />
-      <h1 class="text-2xl mt-4">{profile.data.name}</h1>
-      <section class="text-sm max-w-[400px] text-center">
-        <Content />
-      </section>
-      <nav>
-        <ul class="flex divide-x divide-blue-700 p-2">
-          <li class="text-lg"><a class="block px-2 text-blue-500" href="/">Links</a></li>
-          <li class="text-lg"><a class="block px-2 text-blue-500" href="/postlinks">Posts</a></li>
-        </ul>
-      </nav>
-      <ul class="flex flex-col gap-y-4 pt-10 min-w-[400px]">
+<NoHeaderLayout description={siteConfig.description} image={siteConfig.image}>
+    <div class="relative bg-slate-50 border-b border-slate-100">
+        <Header class="relative" />
+        <Hero />
+    </div>
+    <main class="grow py-12 sm:py-16">
         {
-          links.sort((a, b) => {
-            if (a.data.order < b.data.order) {
-              return -1;
-            }
-            if (a.data.order > b.data.order) {
-              return 1;
-            }
-            return 0;
-          }).map((link) => (
-            <li class="border border-black border-2 w-full text-center p-4 text-xl font-semibold">
-              <a href={link.data.url} class="block">
-                {link.data.title}
-              </a>
-            </li>
-          ))
+            featuredPosts?.length > 0 && (
+                <div class="px-4 mb-12 border-b border-slate-200 sm:px-8 sm:mb-16">
+                    <div class="max-w-6xl mx-auto">
+                        {featuredPosts.map((post) => (
+                            <FeaturedPostPreview post={post} />
+                        ))}
+                    </div>
+                </div>
+            )
         }
-      </ul>
-      <ul class="flex gap-4 items-center justify-center flex-wrap pt-10">
         {
-          socials.sort((a, b) => {
-            if (a.data.order < b.data.order) {
-              return -1;
-            }
-            if (a.data.order > b.data.order) {
-              return 1;
-            }
-            return 0;
-          }).map((social) => (
-            <li class="border border-black border-2 rounded-full">
-              <a href={social.data.url} class="block p-4">
-                <SocialIcon id={social.data.icon[0]}>
-              </a>
-            </li>
-          ))
+            latestPosts?.length > 0 && (
+                <div class="px-4 mb-12 sm:px-8 sm:mb-16">
+                    <div class="max-w-3xl mx-auto mb-8 sm:mb-12">
+                        <h2 class="text-sm uppercase tracking-wider text-slate-900 after:content-[''] after:block after:w-16 after:h-px after:bg-primary after:mt-4">
+                            Latest Articles
+                        </h2>
+                    </div>
+                    <div class="max-w-3xl mx-auto xl:max-w-6xl">
+                        {latestPosts.map((post) => (
+                            <PostPreview post={post} />
+                        ))}
+                    </div>
+                    <div class="max-w-3xl mx-auto pt-8 border-t border-slate-200 sm:pt-12">
+                        <a
+                            class="px-8 py-2.5 inline-flex gap-1.5 justify-center items-center font-semibold bg-primary text-white rounded-full transition duration-300 hover:shadow-button"
+                            href="/blog"
+                        >
+                            View All Posts
+                        </a>
+                    </div>
+                </div>
+            )
         }
-      </ul>
+        <Subscribe class="px-4 my-12 sm:px-8 sm:my-16" />
     </main>
-  </body>
-</html>
+</NoHeaderLayout>
