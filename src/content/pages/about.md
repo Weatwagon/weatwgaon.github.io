@@ -1,19 +1,29 @@
 ---
 title: About
 featureImage:
-  src: '/about.webp'
-  alt: The portrait of a person
+  src: '/about.jpg'
+  alt: A selfie of a man with Los Vegas desert in the background
 seo:
   title: About
-  description: About Justin Case
+  description: About Zack Jones
   image:
     src: '/about.jpg'
 ---
 
-**This is demo content for [Ovidius](https://github.com/JustGoodUI) Astro.js and Tailwind CSS theme created by [justgoodui.com](https://justgoodui.com/).**
+**Background** 
 
-Justin Case is a senior developer from Vilnius, Lithuania. After graduating from The College with a degree in Computer Science, he worked for three small web shops where he honed his development skills and love for JavaScript.
+I'm a full-stack developer, integration specialist, and technology enthusiast based in Sulphur, LA. I've always had a strong passion for technology and things that challenge me. Through my years of experience as an IT professional I have gained many skills and I'm always looking for the next challenge to hone them further.
 
-> Creativity is allowing yourself to make mistakes. Design is knowing which ones to keep.
+**Experience**
 
-His work has been recognized by Communication Arts, IBM, How, ID, IdN, AIGA, Effie, Archive, Graphis, AdFed and Rockport. Net magazine named him a person to watch in 2023.
+Visit my [LinkedIn](https://www.linkedin.com/in/zachary-l-jones/) page to learn about my work experience.
+
+**Interests**
+
+- Learning about new and emerging technology
+- Hobbyist electronics tinkerer
+- Integration and automation
+- Gaming enthusiast
+- Traveling for conferences (as you can see by the non-native Louisiana desert above)
+
+> Learn continually - there's always 'one more thing' to learn!" - Steve Jobs
